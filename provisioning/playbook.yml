@@ -4,6 +4,7 @@
   roles:
     - apache2
     - graphite
+    - elasticsearch
 
   tasks:
     - name: install nginx

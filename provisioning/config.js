@@ -56,6 +56,12 @@ function (Settings) {
       graphite: {
         type: 'graphite',
         url: "http://192.168.10.120/",
+      },
+      elasticsearch: {
+        type: 'elasticsearch',
+        url: "http://192.168.10.120:9200",
+        index: 'grafana-dash',
+        grafanaDB: true,
       }
     },
 
