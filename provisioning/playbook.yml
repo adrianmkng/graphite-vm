@@ -5,3 +5,18 @@
     - apache2
     - graphite
 
+  tasks:
+    - name: install nginx
+      apt: name=nginx state=present
+
+    - name: copy over graphana
+      unarchive: src=grafana-1.7.0.tar.gz dest=/var/www/
+
+    - name: copy over the nginx conf
+      copy: src=nginx.conf dest=/etc/nginx/sites-available/default
+
+    - name: copy over grafana config
+      copy: src=config.js dest=/var/www/grafana-1.7.0/
+
+    - name: restart nginx
+      service: name=nginx state=restarted      
