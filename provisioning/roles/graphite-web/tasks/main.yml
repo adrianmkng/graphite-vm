@@ -1,24 +1,21 @@
 - name: Install graphite web
   apt: name=graphite-web update-cache=yes state=present
 
-- name: Install graphite carbon
-  apt: name=graphite-carbon state=present
-
 - name: configure graphite
   copy: src=local_settings.py dest=/etc/graphite
+
+- command: 'chown -R _graphite: /usr/share/graphite-web/'
 
 - name: initialise graphite database
   command: graphite-manage syncdb --noinput
 
 - command: 'chown _graphite: /var/lib/graphite/graphite.db'
 
-- name: copy carbon config
-  copy: src=graphite-carbon dest=/etc/default
+- apt: name=apache2 update-cache=yes state=present
 
-- name: start carbon
-  service: name=carbon-cache state=started
+- apt: name=libapache2-mod-wsgi state=present
 
-- command: 'chown -R _graphite: /usr/share/graphite-web/'
+- command: a2enmod headers
 
 - command: a2dissite 000-default
 
@@ -27,3 +24,4 @@
 - command: a2ensite apache2-graphite
 
 - service: name=apache2 state=restarted
+

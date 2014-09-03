@@ -1,5 +1,0 @@
-- apt: name=apache2 update-cache=yes state=present
-
-- apt: name=libapache2-mod-wsgi state=present
-
-- command: a2enmod headers

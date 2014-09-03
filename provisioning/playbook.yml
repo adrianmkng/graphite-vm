@@ -2,13 +2,15 @@
 - hosts: all
   sudo: True
   roles:
-    - apache2
-    - graphite
+    - graphite-carbon
     - elasticsearch
 
   tasks:
     - name: install nginx
       apt: name=nginx state=present
+
+    - name: create directory /var/www
+      file: path=/var/www state=directory
 
     - name: copy over graphana
       unarchive: src=grafana-1.7.0.tar.gz dest=/var/www/

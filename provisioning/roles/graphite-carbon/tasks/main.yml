@@ -1,0 +1,9 @@
+- name: Install graphite carbon
+  apt: name=graphite-carbon state=present
+
+- name: copy carbon config
+  copy: src=graphite-carbon dest=/etc/default
+
+- name: start carbon
+  service: name=carbon-cache state=started
+
