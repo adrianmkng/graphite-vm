@@ -3,6 +3,7 @@
   sudo: True
   roles:
     - graphite-carbon
+    - graphite-web
     - elasticsearch
 
   tasks:
